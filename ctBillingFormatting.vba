@@ -25,9 +25,11 @@ Sub CT_Billing()
         .Columns("D").Insert shift:=xlToRight
         .Columns("E:H").Insert shift:=xlToRight
         .Columns("J").Insert shift:=xlToRight
+        Application.CutCopyMode = False
         .Range("A1:L1").Value = Array("PTP", "Date of Service", "Proc. Code", "Duration", "Hours", _
             "Billing Hours", "Rate", "Amount", "DSP", "Payer", "SN Status", "EVV Match Status")
         For i = lRow To 2 Step -1
+            On Error Resume Next
             If Trim(.Cells(i, "K").Value) = "Rejected" Then
                 .Rows(i).EntireRow.Delete
             Else
